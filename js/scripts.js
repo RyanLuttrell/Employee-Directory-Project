@@ -1,3 +1,4 @@
+//Global variables 
 const gallery = document.querySelector('#gallery');
 const employees = []
 const newContainerDiv = document.createElement('div');
@@ -12,7 +13,7 @@ fetch('https://randomuser.me/api/?results=12&inc=name,location,email,dob,phone,p
     .catch(error => new Error('Looks like there was an issue:', error))
 
 //Helper Functions
-
+//Send the data that has been parsed into JSON into an array of objects in the 'employees' variable
 function pushToArray(data) {
     for (i = 0; i < data.results.length; i++) {
        employees.push(data.results[i]) 
@@ -20,6 +21,7 @@ function pushToArray(data) {
     return data
 }
 
+//This functinon will generate a page full of employees with the appropriate information displayed for each employee
 function generateUsers(data) {
     for (let i = 0; i < data.length; i++) {
         const newDiv = document.createElement('div');
@@ -36,11 +38,10 @@ function generateUsers(data) {
         `
         gallery.appendChild(newDiv);
     }
-    return data
 }
 
+//Filters through the cards to detect which card has been selectd and display the appropiate person's information in the modal window
 function generateModal(data, event) {
-
     for (i = 0; i < data.length; i++){
         if ((data[i].name.first + ' ' + data[i].name.last) == event) {
             newContainerDiv.innerHTML = `
@@ -66,6 +67,8 @@ function generateModal(data, event) {
 gallery.addEventListener('click', e => {
     if (e.target.closest('.card')) {
         generateModal(employees, e.target.closest('.card').children[1].children[0].textContent)
+
+//After the modal has been created, add an event listener to the close button of the modal to ensure the user can exit out of the modal
         const modalButton = document.getElementById('modal-close-btn');
         modalButton.addEventListener('click', () => {
             newContainerDiv.remove();
