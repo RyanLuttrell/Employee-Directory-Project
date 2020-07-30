@@ -27,6 +27,8 @@ function generateUsers(data) {
     for (let i = 0; i < data.length; i++) {
         const newDiv = document.createElement('div');
         newDiv.className = 'card';
+//Add box shadow styling for exceeds expectations
+        newDiv.style.boxShadow = '10px 10px 8px 1px lightgrey'
         newDiv.innerHTML = `
         <div class = 'card-img-container'>
             <img class='card-img' src='${data[i].picture.large}' alt='profile picture'>
@@ -117,6 +119,7 @@ searchSubmit.addEventListener('click', () => {
     }
 })
 
+//Creating the functionality of the "Prev" button on the modal
 function switchToPrev() {
     const cards = document.querySelectorAll('.card');
     if (index > 0) {
@@ -151,6 +154,7 @@ function switchToPrev() {
     }
 }
 
+//Creating the functionality of the "Next" button on the modal
 function switchToNext() {
     const cards = document.querySelectorAll('.card');
     if (index < cards.length - 1) {
