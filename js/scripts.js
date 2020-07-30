@@ -108,7 +108,8 @@ const searchInput = document.querySelector('#search-input');
 const searchSubmit = document.querySelector('#search-submit');
 
 //Create search functionality for the employees
-searchSubmit.addEventListener('click', () => {
+searchSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
     const cards = document.querySelectorAll('.card');
     for (let i = 0; i < cards.length; i++) {
         if (cards[i].children[1].children[0].textContent.toUpperCase().includes(searchInput.value.toUpperCase())) {
